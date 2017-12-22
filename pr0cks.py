@@ -43,6 +43,7 @@ def display(msg):
         print "\033[1;30m[i]\033[0m"+msg[3:]
     else:
         print msg
+    sys.stdout.flush()
 
 try:
     from dnslib import DNSRecord, QTYPE
@@ -120,7 +121,7 @@ try:
             response += sock.recv(8192)
         sock.close()
         return response
-    dnslib_imported=True
+    dnslib_imported=False
 except ImportError:
     display("[-] WARNING: The following dependency is needed to proxify DNS through tcp: pip install dnslib")
 
